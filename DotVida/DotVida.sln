@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVida.Application", "DotVida.Application\DotVida.Application.csproj", "{86C8953E-69E7-4ADC-A496-65EC3AEDABF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVida.Domain", "DotVida.Domain\DotVida.Domain.csproj", "{6D626F08-E520-44C1-849B-92EE5BA6726B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVida.Infra", "DotVida.Infra\DotVida.Infra.csproj", "{FDE61273-459A-4833-AA11-36A429493F70}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86C8953E-69E7-4ADC-A496-65EC3AEDABF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C8953E-69E7-4ADC-A496-65EC3AEDABF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C8953E-69E7-4ADC-A496-65EC3AEDABF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C8953E-69E7-4ADC-A496-65EC3AEDABF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D626F08-E520-44C1-849B-92EE5BA6726B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D626F08-E520-44C1-849B-92EE5BA6726B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D626F08-E520-44C1-849B-92EE5BA6726B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D626F08-E520-44C1-849B-92EE5BA6726B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDE61273-459A-4833-AA11-36A429493F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDE61273-459A-4833-AA11-36A429493F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDE61273-459A-4833-AA11-36A429493F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDE61273-459A-4833-AA11-36A429493F70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
