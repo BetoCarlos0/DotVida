@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace DotVida.Domain.Entities.Enums
 {
     public enum Gender
     {
-        Masculino = 1,
-        Feminino = 2,
-        Outros = 3
+        [Description("Homem cis")]
+        Homem_cis,
+        [Description("Mulher cis")]
+        Mulher_cis,
+        [Description("Homem trans")]
+        Homem_trans,
+        [Description("Mulher trans")]
+        Mulher_trans,
+        [Description("Outro")]
+        Outro
     }
 }
