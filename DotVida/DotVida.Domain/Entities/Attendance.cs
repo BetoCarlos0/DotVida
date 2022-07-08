@@ -7,16 +7,16 @@ namespace DotVida.Domain.Entities
         public Guid IdAttendance { get; set; }
 
         [Required(ErrorMessage = "Peso vazio")]
-        public double Weight { get; set; }
+        public decimal Weight { get; set; }
 
         [Required(ErrorMessage = "Altura vazio")]
-        public double Height { get; set; }
+        public decimal Height { get; set; }
 
         [Required(ErrorMessage = "Data vazio")]
-        public string Date { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [Required(ErrorMessage = "Doença vazio")]
-        public Personal_Illness Sick { get; set; }
+        public IEnumerable<Personal_Illness> Sick { get; set; }
 
         public Guid IdDoctor { get; set; }
         public Doctor Doctor { get; set; }

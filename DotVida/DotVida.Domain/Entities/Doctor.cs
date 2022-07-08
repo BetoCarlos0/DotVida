@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DotVida.Domain.Entities.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
 {
@@ -8,6 +9,6 @@ namespace DotVida.Domain.Entities
         public string RegistrationNumber { get; set; }
 
         [Required(ErrorMessage = "Especialização vazia")]
-        public string Specialty { get; set; }
+        public Specialty Specialty { get; set; }
     }
 }
