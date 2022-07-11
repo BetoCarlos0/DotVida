@@ -24,7 +24,8 @@ namespace DotVida.Infra.Data.Context
         {
             var entries = ChangeTracker
                 .Entries()
-                .Where(e => e.Entity.GetType().GetProperty("CreatedDate") != null);
+                .Where(e => e.Entity.GetType().GetProperty("CreatedDate") != null ||
+                    e.Entity.GetType().GetProperty("DateEntry") != null);
 
             foreach (var entityEntry in entries)
             {

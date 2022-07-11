@@ -11,6 +11,7 @@ namespace DotVida.Domain.Entities.Interfaces
         public string Name { get; set; }
 
         [Required(ErrorMessage = "CPF vazio")]
+        [RegularExpression(@"([0-9]{3}[.]){2}[0-9]{3}[-][0-9]{2}")]
         public string CPF { get; set; }
 
         [Required(ErrorMessage = "Idade vazia")]

@@ -4,14 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DotVida.Infra.Data.EntityConfiguration
 {
-    public class DoctorConfig : IEntityTypeConfiguration<Doctor>
+    public class PatientEntryConfig : IEntityTypeConfiguration<PatientEntry>
     {
-        public void Configure(EntityTypeBuilder<Doctor> builder)
+        public void Configure(EntityTypeBuilder<PatientEntry> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.RegistrationNumber)
-                .HasMaxLength(12)
-                .IsRequired();
         }
     }
 }

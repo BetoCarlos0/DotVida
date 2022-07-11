@@ -8,10 +8,10 @@ namespace DotVida.Domain.Entities
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Data de entrada vazia")]
-        public string DateEntry { get; set; }
+        public DateTime DateEntry { get; set; }
 
         [Required(ErrorMessage = "Data de saída vazia")]
-        public string DateExit { get; set; }
+        public DateTime DateExit { get; set; }
 
         [Required(ErrorMessage = "Status de entrada vazio")]
         public StatusEntry StatusEntry { get; set; }
