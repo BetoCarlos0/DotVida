@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotVida.Infra.Data.Migrations
 {
     [DbContext(typeof(DotVidaDbContext))]
-    [Migration("20220712124607_Initial")]
+    [Migration("20220712151101_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,14 +26,14 @@ namespace DotVida.Infra.Data.Migrations
 
             modelBuilder.Entity("DotVida.Domain.Entities.Attendance", b =>
                 {
-                    b.Property<Guid>("AttendanceId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CommentsDoctor")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -55,7 +55,7 @@ namespace DotVida.Infra.Data.Migrations
                         .HasPrecision(3, 2)
                         .HasColumnType("decimal(3,2)");
 
-                    b.HasKey("AttendanceId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
 
@@ -106,7 +106,7 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasColumnType("varchar(12)");
 
                     b.Property<int>("Specialty")
                         .HasColumnType("int");
@@ -132,7 +132,7 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<string>("CPF")
                         .IsRequired()
                         .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)");
+                        .HasColumnType("varchar(14)");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -140,7 +140,7 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<bool>("PersonStatus")
                         .HasColumnType("bit");
@@ -182,7 +182,7 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<string>("Comments")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<Guid?>("PatientId")
                         .HasColumnType("uniqueidentifier");
@@ -206,24 +206,24 @@ namespace DotVida.Infra.Data.Migrations
 
             modelBuilder.Entity("DotVida.Domain.Entities.Sick", b =>
                 {
-                    b.Property<Guid>("SickId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("SickId");
+                    b.HasKey("Id");
 
                     b.ToTable("Sicks");
                 });

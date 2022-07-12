@@ -10,6 +10,7 @@ namespace DotVida.Infra.Data.EntityConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.RegistrationNumber)
+                .HasColumnType("varchar")
                 .HasMaxLength(12)
                 .IsRequired();
         }

@@ -1,12 +1,11 @@
 ﻿using DotVida.Domain.Entities.Enums;
+using DotVida.Domain.Entities.Abstracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
 {
-    public class Sick
+    public class Sick : EntityBase
     {
-        public Guid SickId { get; set; }
-
         [Required(ErrorMessage = "Nome da doença vazia")]
         public string Name { get; set; }
 

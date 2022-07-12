@@ -1,12 +1,11 @@
 ﻿using DotVida.Domain.Entities.Enums;
+using DotVida.Domain.Entities.Abstracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
 {
-    public class Personal_Illness // Enfermidade Pessoal
+    public class Personal_Illness : EntityBase // Enfermidade Pessoal
     {
-        public Guid Id { get; set; }
-
         [Required(ErrorMessage = "Comentário vazio")]
         public string Comments { get; set; }
 

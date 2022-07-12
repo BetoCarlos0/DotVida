@@ -14,7 +14,7 @@ namespace DotVida.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RegistrationNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    RegistrationNumber = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
                     Specialty = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -36,8 +36,8 @@ namespace DotVida.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    CPF = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
                     Age = table.Column<int>(type: "int", maxLength: 3, nullable: false),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BloodType = table.Column<int>(type: "int", nullable: false),
@@ -66,32 +66,32 @@ namespace DotVida.Infra.Data.Migrations
                 name: "Sicks",
                 columns: table => new
                 {
-                    SickId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                    Description = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sicks", x => x.SickId);
+                    table.PrimaryKey("PK_Sicks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Attendances",
                 columns: table => new
                 {
-                    AttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Weight = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
                     Height = table.Column<decimal>(type: "decimal(1,2)", precision: 1, scale: 2, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CommentsDoctor = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    CommentsDoctor = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
                     PatientEntryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Attendances", x => x.AttendanceId);
+                    table.PrimaryKey("PK_Attendances", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Attendances_Doctors_DoctorId",
                         column: x => x.DoctorId,
@@ -115,7 +115,7 @@ namespace DotVida.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Comments = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Comments = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
                     StatusSick = table.Column<int>(type: "int", nullable: false),
                     SickId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -128,7 +128,7 @@ namespace DotVida.Infra.Data.Migrations
                         name: "FK_Personal_Illnesses_Attendances_AttendanceId",
                         column: x => x.AttendanceId,
                         principalTable: "Attendances",
-                        principalColumn: "AttendanceId");
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Personal_Illnesses_Patients_PatientId",
                         column: x => x.PatientId,
@@ -138,7 +138,7 @@ namespace DotVida.Infra.Data.Migrations
                         name: "FK_Personal_Illnesses_Sicks_SickId",
                         column: x => x.SickId,
                         principalTable: "Sicks",
-                        principalColumn: "SickId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DotVida.Domain.Entities.Abstracts;
+using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
 {
-    public class Attendance // Atendimento
+    public class Attendance : EntityBase
     {
-        public Guid AttendanceId { get; set; }
-
         [Required(ErrorMessage = "Peso vazio")]
         public decimal Weight { get; set; }
 

@@ -8,7 +8,7 @@ namespace DotVida.Infra.Data.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Attendance> builder)
         {
-            builder.HasKey(x => x.AttendanceId);
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.Weight)
                 .HasPrecision(3, 2)
                 .IsRequired();
@@ -18,6 +18,7 @@ namespace DotVida.Infra.Data.EntityConfiguration
                 .IsRequired();
 
             builder.Property(x => x.CommentsDoctor)
+                .HasColumnType("varchar")
                 .HasMaxLength(255)
                 .IsRequired();
         }

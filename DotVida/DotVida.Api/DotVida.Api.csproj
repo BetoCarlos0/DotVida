@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\DotVida.Infra.Data\DotVida.Infra.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotVida.Infra.Data\DotVida.Infra.Data.csproj" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

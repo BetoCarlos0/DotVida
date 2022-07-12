@@ -11,6 +11,7 @@ namespace DotVida.Infra.Data.EntityConfiguration
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Comments)
+                .HasColumnType("varchar")
                 .HasMaxLength(255)
                 .IsRequired();
         }

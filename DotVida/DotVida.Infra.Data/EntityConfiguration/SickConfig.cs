@@ -8,13 +8,15 @@ namespace DotVida.Infra.Data.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Sick> builder)
         {
-            builder.HasKey(x => x.SickId);
+            builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Name)
+                .HasColumnType("varchar")
                 .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(x => x.Description)
+                .HasColumnType("varchar")
                 .HasMaxLength(255)
                 .IsRequired();
         }
