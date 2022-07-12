@@ -8,7 +8,7 @@ namespace DotVida.Infra.Data.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Attendance> builder)
         {
-            builder.HasKey(x => x.IdDoctor);
+            builder.HasKey(x => x.AttendanceId);
             builder.Property(x => x.Weight)
                 .HasPrecision(3, 2)
                 .IsRequired();

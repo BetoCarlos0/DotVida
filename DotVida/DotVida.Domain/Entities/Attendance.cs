@@ -4,7 +4,7 @@ namespace DotVida.Domain.Entities
 {
     public class Attendance // Atendimento
     {
-        public Guid IdAttendance { get; set; }
+        public Guid AttendanceId { get; set; }
 
         [Required(ErrorMessage = "Peso vazio")]
         public decimal Weight { get; set; }
@@ -18,7 +18,7 @@ namespace DotVida.Domain.Entities
         [Required(ErrorMessage = "Doença vazio")]
         public IEnumerable<Personal_Illness> Sick { get; set; }
 
-        public Guid IdDoctor { get; set; }
+        public Guid DoctorId { get; set; }
         public Doctor Doctor { get; set; }
 
         [Required(ErrorMessage = "Comentário do médico vazio")]

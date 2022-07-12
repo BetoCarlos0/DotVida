@@ -24,7 +24,7 @@ namespace DotVida.Infra.Data.Migrations
 
             modelBuilder.Entity("DotVida.Domain.Entities.Attendance", b =>
                 {
-                    b.Property<Guid>("IdDoctor")
+                    b.Property<Guid>("AttendanceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -43,9 +43,6 @@ namespace DotVida.Infra.Data.Migrations
                         .HasPrecision(1, 2)
                         .HasColumnType("decimal(1,2)");
 
-                    b.Property<Guid>("IdAttendance")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("PatientEntryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -56,7 +53,7 @@ namespace DotVida.Infra.Data.Migrations
                         .HasPrecision(3, 2)
                         .HasColumnType("decimal(3,2)");
 
-                    b.HasKey("IdDoctor");
+                    b.HasKey("AttendanceId");
 
                     b.HasIndex("DoctorId");
 
@@ -177,7 +174,7 @@ namespace DotVida.Infra.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AttendanceIdDoctor")
+                    b.Property<Guid?>("AttendanceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Comments")
@@ -185,13 +182,10 @@ namespace DotVida.Infra.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<Guid>("IdSick")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("PatientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SickIdSick")
+                    b.Property<Guid>("SickId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("StatusSick")
@@ -199,18 +193,18 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AttendanceIdDoctor");
+                    b.HasIndex("AttendanceId");
 
                     b.HasIndex("PatientId");
 
-                    b.HasIndex("SickIdSick");
+                    b.HasIndex("SickId");
 
                     b.ToTable("Personal_Illnesses");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Sick", b =>
                 {
-                    b.Property<Guid>("IdSick")
+                    b.Property<Guid>("SickId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -227,7 +221,7 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("IdSick");
+                    b.HasKey("SickId");
 
                     b.ToTable("Sicks");
                 });
@@ -255,7 +249,7 @@ namespace DotVida.Infra.Data.Migrations
                 {
                     b.HasOne("DotVida.Domain.Entities.Attendance", null)
                         .WithMany("Sick")
-                        .HasForeignKey("AttendanceIdDoctor");
+                        .HasForeignKey("AttendanceId");
 
                     b.HasOne("DotVida.Domain.Entities.Patient", null)
                         .WithMany("Sick")
@@ -263,7 +257,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasOne("DotVida.Domain.Entities.Sick", "Sick")
                         .WithMany()
-                        .HasForeignKey("SickIdSick")
+                        .HasForeignKey("SickId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

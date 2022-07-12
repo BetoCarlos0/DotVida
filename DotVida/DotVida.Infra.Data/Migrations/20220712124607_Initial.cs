@@ -66,22 +66,21 @@ namespace DotVida.Infra.Data.Migrations
                 name: "Sicks",
                 columns: table => new
                 {
-                    IdSick = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SickId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sicks", x => x.IdSick);
+                    table.PrimaryKey("PK_Sicks", x => x.SickId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Attendances",
                 columns: table => new
                 {
-                    IdDoctor = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdAttendance = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Weight = table.Column<decimal>(type: "decimal(3,2)", precision: 3, scale: 2, nullable: false),
                     Height = table.Column<decimal>(type: "decimal(1,2)", precision: 1, scale: 2, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -92,7 +91,7 @@ namespace DotVida.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Attendances", x => x.IdDoctor);
+                    table.PrimaryKey("PK_Attendances", x => x.AttendanceId);
                     table.ForeignKey(
                         name: "FK_Attendances_Doctors_DoctorId",
                         column: x => x.DoctorId,
@@ -118,29 +117,28 @@ namespace DotVida.Infra.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Comments = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     StatusSick = table.Column<int>(type: "int", nullable: false),
-                    IdSick = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SickIdSick = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AttendanceIdDoctor = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    SickId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Personal_Illnesses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Personal_Illnesses_Attendances_AttendanceIdDoctor",
-                        column: x => x.AttendanceIdDoctor,
+                        name: "FK_Personal_Illnesses_Attendances_AttendanceId",
+                        column: x => x.AttendanceId,
                         principalTable: "Attendances",
-                        principalColumn: "IdDoctor");
+                        principalColumn: "AttendanceId");
                     table.ForeignKey(
                         name: "FK_Personal_Illnesses_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Personal_Illnesses_Sicks_SickIdSick",
-                        column: x => x.SickIdSick,
+                        name: "FK_Personal_Illnesses_Sicks_SickId",
+                        column: x => x.SickId,
                         principalTable: "Sicks",
-                        principalColumn: "IdSick",
+                        principalColumn: "SickId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -160,9 +158,9 @@ namespace DotVida.Infra.Data.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Personal_Illnesses_AttendanceIdDoctor",
+                name: "IX_Personal_Illnesses_AttendanceId",
                 table: "Personal_Illnesses",
-                column: "AttendanceIdDoctor");
+                column: "AttendanceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Personal_Illnesses_PatientId",
@@ -170,9 +168,9 @@ namespace DotVida.Infra.Data.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Personal_Illnesses_SickIdSick",
+                name: "IX_Personal_Illnesses_SickId",
                 table: "Personal_Illnesses",
-                column: "SickIdSick");
+                column: "SickId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

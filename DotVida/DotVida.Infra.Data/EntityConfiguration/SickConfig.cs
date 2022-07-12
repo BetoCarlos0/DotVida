@@ -8,7 +8,7 @@ namespace DotVida.Infra.Data.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Sick> builder)
         {
-            builder.HasKey(x => x.IdSick);
+            builder.HasKey(x => x.SickId);
 
             builder.Property(x => x.Name)
                 .HasMaxLength(100)

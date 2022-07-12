@@ -5,7 +5,7 @@ namespace DotVida.Domain.Entities
 {
     public class Sick
     {
-        public Guid IdSick { get; set; }
+        public Guid SickId { get; set; }
 
         [Required(ErrorMessage = "Nome da doença vazia")]
         public string Name { get; set; }
