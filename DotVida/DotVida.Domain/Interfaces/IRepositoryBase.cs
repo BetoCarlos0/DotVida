@@ -1,7 +1,14 @@
-﻿namespace DotVida.Domain.Interfaces
+﻿using DotVida.Domain.Entities.Abstracts;
+
+namespace DotVida.Domain.Interfaces
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IRepositoryBase<T> where T : EntityBase
     {
-        Task AddAsync(T entity);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetByIdAsnc(int Id);
+        Task CreateAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task RemoveAsync(T entity);
+        void Dispose();
     }
 }
