@@ -1,5 +1,4 @@
-﻿using DotVida.Domain.Entities.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities.Abstracts
 {
@@ -16,10 +15,10 @@ namespace DotVida.Domain.Entities.Abstracts
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Sexo vazio")]
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
 
         [Required(ErrorMessage = "Tipo sanguíneo vazio")]
-        public BloodType BloodType { get; set; }  // tipo sanguíneo
+        public string BloodType { get; set; }  // tipo sanguíneo
 
         [Required(ErrorMessage = "Status da pessoa vazio")]
         public bool PersonStatus { get; set; }    // vivo, morto

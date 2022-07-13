@@ -1,5 +1,4 @@
-﻿using DotVida.Domain.Entities.Enums;
-using DotVida.Domain.Entities.Abstracts;
+﻿using DotVida.Domain.Entities.Abstracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
@@ -10,7 +9,7 @@ namespace DotVida.Domain.Entities
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Tipo da doença vazia")]
-        public TypeSick Type { get; set; }
+        public string Type { get; set; }
 
         [Required(ErrorMessage = "Descrição vazia")]
         public string Description { get; set; }

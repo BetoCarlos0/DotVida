@@ -1,5 +1,4 @@
 ﻿using DotVida.Domain.Entities.Abstracts;
-using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
 {

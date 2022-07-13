@@ -1,5 +1,4 @@
-﻿using DotVida.Domain.Entities.Enums;
-using DotVida.Domain.Entities.Abstracts;
+﻿using DotVida.Domain.Entities.Abstracts;
 using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
@@ -13,7 +12,7 @@ namespace DotVida.Domain.Entities
         public DateTime DateExit { get; set; }
 
         [Required(ErrorMessage = "Status de entrada vazio")]
-        public StatusEntry StatusEntry { get; set; }
+        public string StatusEntry { get; set; }
 
         [Required(ErrorMessage = "Atendimento vazio")]
         public IEnumerable<Attendance> Attendance { get; set; }

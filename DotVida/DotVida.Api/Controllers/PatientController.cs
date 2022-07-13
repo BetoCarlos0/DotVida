@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pacientes")]
     [ApiController]
     public class PatientController : ControllerBase
     {

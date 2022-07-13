@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DotVida.Infra.Data.Repositories
 {
-    public class RepositoryBase<T> : IDisposable, IRepositoryBase<T> where T : EntityBase
+    public class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
     {
         private readonly DotVidaDbContext _dbContext;
 
@@ -39,11 +39,6 @@ namespace DotVida.Infra.Data.Repositories
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
         }
     }
 }
