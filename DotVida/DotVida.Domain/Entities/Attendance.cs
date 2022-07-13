@@ -15,7 +15,7 @@ namespace DotVida.Domain.Entities
         public DateTime CreatedDate { get; set; }
 
         [Required(ErrorMessage = "Doença vazio")]
-        public IEnumerable<Personal_Illness> Sick { get; set; }
+        public IEnumerable<Personal_Illness> Personal_Illness { get; set; }
 
         public Guid DoctorId { get; set; }
         public Doctor Doctor { get; set; }

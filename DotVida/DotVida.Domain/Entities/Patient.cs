@@ -5,10 +5,7 @@ namespace DotVida.Domain.Entities
 {
     public class Patient : PersonBase // Paciente
     {
-        [Required(ErrorMessage = "Doença vazia")]
-        public IEnumerable<Personal_Illness> Sick { get; set; }
-
-        [Required(ErrorMessage = "Atendimento vazio")]
-        public IEnumerable<Attendance> Attendances { get; set; }
+        public IEnumerable<Personal_Illness> Personal_Illness { get; set; }
+        public IEnumerable<PatientEntry> PatientEntry { get; set; }
     }
 }
