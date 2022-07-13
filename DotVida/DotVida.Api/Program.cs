@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-//builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
 //builder.Services.AddDbContext<DotVidaDbContext>(options =>
 //  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

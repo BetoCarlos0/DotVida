@@ -1,4 +1,5 @@
 ﻿using DotVida.Domain.Entities;
+using DotVida.Domain.Interfaces;
 using DotVida.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace DotVida.Api.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        private readonly PatientRepository _repository;
+        private readonly IPatientRepository _repository;
 
-        public PatientController(PatientRepository repository)
+        public PatientController(IPatientRepository repository)
         {
             _repository = repository;
         }
