@@ -1,4 +1,6 @@
+using DotVida.Domain.Interfaces;
 using DotVida.Infra.Data.Context;
+using DotVida.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +12,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+//builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+
+//builder.Services.AddDbContext<DotVidaDbContext>(options =>
+//  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
 builder.Services.AddDbContext<DotVidaDbContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+  options.UseInMemoryDatabase("teste"));
 
 var app = builder.Build();
 
