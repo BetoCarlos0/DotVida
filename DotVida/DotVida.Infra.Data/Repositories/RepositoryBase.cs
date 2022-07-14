@@ -35,8 +35,10 @@ namespace DotVida.Infra.Data.Repositories
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
-        public async Task RemoveAsync(T entity)
+        public async Task RemoveAsync(Guid id)
         {
+            var entity = await _dbContext.Set<T>().FindAsync(id);
+
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }

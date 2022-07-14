@@ -8,6 +8,6 @@ namespace DotVida.Domain.Interfaces
         Task<T> GetByIdAsnc(Guid Id);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
-        Task RemoveAsync(T entity);
+        Task RemoveAsync(Guid id);
     }
 }

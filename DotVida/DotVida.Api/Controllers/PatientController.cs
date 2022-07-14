@@ -32,7 +32,7 @@ namespace DotVida.Api.Controllers
 
             if (patient == null)
                 return NotFound("Paciente não encontrado");
-
+            
             return Ok(patient);
         }
 
@@ -41,9 +41,36 @@ namespace DotVida.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostPatient(Patient patient)
         {
+            if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
+
             await _repository.CreateAsync(patient);
 
-            return Ok(patient);
+            return Ok();
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPut]
+        public async Task<IActionResult> PutPatient(Patient patient)
+        {
+            if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
+
+            await _repository.UpdateAsync(patient);
+
+            return Ok();
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePatient(Guid id)
+        {
+            if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
+
+            await _repository.RemoveAsync(id);
+
+            return Ok();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace DotVida.Domain.Entities.Abstracts
 {
@@ -11,8 +12,8 @@ namespace DotVida.Domain.Entities.Abstracts
         [RegularExpression(@"([0-9]{3}[.]){2}[0-9]{3}[-][0-9]{2}", ErrorMessage = "Formato inválido")]
         public string? CPF { get; set; }
 
-        [Required(ErrorMessage = "Idade vazia")]
-        public int Age { get; set; }
+        [Required(ErrorMessage = "Idade vazia"), Range(18, 120, ErrorMessage = "Idade inválida")]
+        public int Age{ get; set; }
 
         [Required(ErrorMessage = "Sexo vazio")]
         public string? Gender { get; set; }
