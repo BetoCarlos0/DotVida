@@ -15,15 +15,15 @@ namespace DotVida.Infra.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RegistrationNumber = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
-                    Specialty = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CPF = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    BloodType = table.Column<int>(type: "int", nullable: false),
+                    Specialty = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    CPF = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
+                    Age = table.Column<int>(type: "int", maxLength: 3, nullable: false),
+                    Gender = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    BloodType = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: false),
                     PersonStatus = table.Column<bool>(type: "bit", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Login = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
+                    Password = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false),
                     EmployeeStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -39,13 +39,27 @@ namespace DotVida.Infra.Data.Migrations
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     CPF = table.Column<string>(type: "varchar(14)", maxLength: 14, nullable: false),
                     Age = table.Column<int>(type: "int", maxLength: 3, nullable: false),
-                    Gender = table.Column<int>(type: "int", nullable: false),
-                    BloodType = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    BloodType = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: false),
                     PersonStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sicks",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
+                    TypeSick = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
+                    Description = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sicks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,25 +69,17 @@ namespace DotVida.Infra.Data.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DateEntry = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateExit = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StatusEntry = table.Column<int>(type: "int", nullable: false)
+                    StatusEntry = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
+                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PatientsEntry", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sicks",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sicks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PatientsEntry_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -86,8 +92,7 @@ namespace DotVida.Infra.Data.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CommentsDoctor = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
-                    PatientEntryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    PatientEntryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -98,11 +103,6 @@ namespace DotVida.Infra.Data.Migrations
                         principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Attendances_Patients_PatientId",
-                        column: x => x.PatientId,
-                        principalTable: "Patients",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Attendances_PatientsEntry_PatientEntryId",
                         column: x => x.PatientEntryId,
@@ -116,7 +116,7 @@ namespace DotVida.Infra.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Comments = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
-                    StatusSick = table.Column<int>(type: "int", nullable: false),
+                    StatusSick = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
                     SickId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AttendanceId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -153,8 +153,8 @@ namespace DotVida.Infra.Data.Migrations
                 column: "PatientEntryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Attendances_PatientId",
-                table: "Attendances",
+                name: "IX_PatientsEntry_PatientId",
+                table: "PatientsEntry",
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
@@ -188,10 +188,10 @@ namespace DotVida.Infra.Data.Migrations
                 name: "Doctors");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "PatientsEntry");
 
             migrationBuilder.DropTable(
-                name: "PatientsEntry");
+                name: "Patients");
         }
     }
 }

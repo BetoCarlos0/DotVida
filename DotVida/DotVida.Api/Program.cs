@@ -15,11 +15,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
 
-//builder.Services.AddDbContext<DotVidaDbContext>(options =>
-//  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-
 builder.Services.AddDbContext<DotVidaDbContext>(options =>
-  options.UseInMemoryDatabase("teste"));
+  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+//builder.Services.AddDbContext<DotVidaDbContext>(options =>
+//  options.UseInMemoryDatabase("teste"));
 
 var app = builder.Build();
 

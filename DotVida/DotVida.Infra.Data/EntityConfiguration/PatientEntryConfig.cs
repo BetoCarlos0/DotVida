@@ -9,6 +9,10 @@ namespace DotVida.Infra.Data.EntityConfiguration
         public void Configure(EntityTypeBuilder<PatientEntry> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.StatusEntry)
+                .HasColumnType("varchar")
+                .HasMaxLength(15)
+                .IsRequired();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DotVida.Domain.Entities
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Tipo da doença vazia")]
-        public string Type { get; set; }
+        public string TypeSick { get; set; }
 
         [Required(ErrorMessage = "Descrição vazia")]
         public string Description { get; set; }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotVida.Infra.Data.Migrations
 {
     [DbContext(typeof(DotVidaDbContext))]
-    [Migration("20220712151101_Initial")]
+    [Migration("20220714001416_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,9 +48,6 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<Guid?>("PatientEntryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PatientId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("Weight")
                         .HasPrecision(3, 2)
                         .HasColumnType("decimal(3,2)");
@@ -60,8 +57,6 @@ namespace DotVida.Infra.Data.Migrations
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("PatientEntryId");
-
-                    b.HasIndex("PatientId");
 
                     b.ToTable("Attendances");
                 });
@@ -73,32 +68,41 @@ namespace DotVida.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Age")
+                        .HasMaxLength(3)
                         .HasColumnType("int");
 
-                    b.Property<int>("BloodType")
-                        .HasColumnType("int");
+                    b.Property<string>("BloodType")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)");
 
                     b.Property<string>("CPF")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(14)
+                        .HasColumnType("varchar(14)");
 
                     b.Property<bool>("EmployeeStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
 
                     b.Property<bool>("PersonStatus")
                         .HasColumnType("bit");
@@ -108,8 +112,10 @@ namespace DotVida.Infra.Data.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("varchar(12)");
 
-                    b.Property<int>("Specialty")
-                        .HasColumnType("int");
+                    b.Property<string>("Specialty")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
 
                     b.HasKey("Id");
 
@@ -126,16 +132,20 @@ namespace DotVida.Infra.Data.Migrations
                         .HasMaxLength(3)
                         .HasColumnType("int");
 
-                    b.Property<int>("BloodType")
-                        .HasColumnType("int");
+                    b.Property<string>("BloodType")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("varchar(3)");
 
                     b.Property<string>("CPF")
                         .IsRequired()
                         .HasMaxLength(14)
                         .HasColumnType("varchar(14)");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -162,10 +172,17 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<DateTime>("DateExit")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StatusEntry")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("StatusEntry")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("PatientsEntry");
                 });
@@ -190,8 +207,10 @@ namespace DotVida.Infra.Data.Migrations
                     b.Property<Guid>("SickId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("StatusSick")
-                        .HasColumnType("int");
+                    b.Property<string>("StatusSick")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -220,8 +239,10 @@ namespace DotVida.Infra.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("TypeSick")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -240,21 +261,24 @@ namespace DotVida.Infra.Data.Migrations
                         .WithMany("Attendance")
                         .HasForeignKey("PatientEntryId");
 
-                    b.HasOne("DotVida.Domain.Entities.Patient", null)
-                        .WithMany("Attendances")
-                        .HasForeignKey("PatientId");
-
                     b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("DotVida.Domain.Entities.PatientEntry", b =>
+                {
+                    b.HasOne("DotVida.Domain.Entities.Patient", null)
+                        .WithMany("PatientEntry")
+                        .HasForeignKey("PatientId");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Personal_Illness", b =>
                 {
                     b.HasOne("DotVida.Domain.Entities.Attendance", null)
-                        .WithMany("Sick")
+                        .WithMany("Personal_Illness")
                         .HasForeignKey("AttendanceId");
 
                     b.HasOne("DotVida.Domain.Entities.Patient", null)
-                        .WithMany("Sick")
+                        .WithMany("Personal_Illness")
                         .HasForeignKey("PatientId");
 
                     b.HasOne("DotVida.Domain.Entities.Sick", "Sick")
@@ -268,14 +292,14 @@ namespace DotVida.Infra.Data.Migrations
 
             modelBuilder.Entity("DotVida.Domain.Entities.Attendance", b =>
                 {
-                    b.Navigation("Sick");
+                    b.Navigation("Personal_Illness");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Patient", b =>
                 {
-                    b.Navigation("Attendances");
+                    b.Navigation("PatientEntry");
 
-                    b.Navigation("Sick");
+                    b.Navigation("Personal_Illness");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.PatientEntry", b =>

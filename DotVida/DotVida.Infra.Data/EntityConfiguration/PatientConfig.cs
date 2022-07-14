@@ -19,6 +19,16 @@ namespace DotVida.Infra.Data.EntityConfiguration
                 .HasMaxLength(14)
                 .IsRequired();
 
+            builder.Property(x => x.Gender)
+                .HasColumnType("varchar")
+                .HasMaxLength(20)
+                .IsRequired();
+
+            builder.Property(x => x.BloodType)
+                .HasColumnType("varchar")
+                .HasMaxLength(3)
+                .IsRequired();
+
             builder.Property(x => x.Age)
                 .HasMaxLength(3)
                 .IsRequired();

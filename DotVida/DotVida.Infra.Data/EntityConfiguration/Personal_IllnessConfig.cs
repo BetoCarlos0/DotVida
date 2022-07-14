@@ -14,6 +14,11 @@ namespace DotVida.Infra.Data.EntityConfiguration
                 .HasColumnType("varchar")
                 .HasMaxLength(255)
                 .IsRequired();
+
+            builder.Property(x => x.StatusSick)
+                .HasColumnType("varchar")
+                .HasMaxLength(15)
+                .IsRequired();
         }
     }
 }
