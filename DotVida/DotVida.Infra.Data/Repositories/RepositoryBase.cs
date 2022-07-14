@@ -19,7 +19,7 @@ namespace DotVida.Infra.Data.Repositories
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsnc(int id)
+        public async Task<T> GetByIdAsnc(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

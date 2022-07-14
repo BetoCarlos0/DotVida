@@ -16,10 +16,19 @@ namespace DotVida.Api.Controllers
             _repository = repository;
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Patient>>> GetPatients()
+        public async Task<ActionResult<IEnumerable<Patient>>> GetAllPatients()
         {
             return Ok(await _repository.GetAllAsync());
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Patient>> GetPatient(Guid id)
+        {
+            return Ok(await _repository.GetByIdAsnc(id));
         }
     }
 }

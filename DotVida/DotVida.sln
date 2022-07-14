@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{6A167BDC-94EA-407A-AC13-C7DEE328A703}"
+	ProjectSection(SolutionItems) = preProject
+		Angular .txt = Angular .txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{108273B9-DF35-4307-B6B9-CBC9BE49CF3E}"
 EndProject
@@ -23,7 +26,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotVida.Infra.Data", "DotVi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{37FD2819-75A4-4B92-9488-5A57E467DAC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVida.Api", "DotVida.Api\DotVida.Api.csproj", "{5332F692-7321-473F-9DA7-96B24C8B008D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotVida.Api", "DotVida.Api\DotVida.Api.csproj", "{5332F692-7321-473F-9DA7-96B24C8B008D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Test", "5 - Test", "{D6506BF3-6AB9-4F9F-80BC-7C98C26F25EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVida.Test", "DotVida.Test\DotVida.Test.csproj", "{AB973C2E-7FAF-463A-9E3E-7FBD035F2A6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +50,10 @@ Global
 		{5332F692-7321-473F-9DA7-96B24C8B008D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5332F692-7321-473F-9DA7-96B24C8B008D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5332F692-7321-473F-9DA7-96B24C8B008D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB973C2E-7FAF-463A-9E3E-7FBD035F2A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB973C2E-7FAF-463A-9E3E-7FBD035F2A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB973C2E-7FAF-463A-9E3E-7FBD035F2A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB973C2E-7FAF-463A-9E3E-7FBD035F2A6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +65,7 @@ Global
 		{99D4FB69-8C7A-4ADC-96C2-76F19FC67B32} = {7EF56D5B-891A-4D3C-AF78-385E9B419438}
 		{37FD2819-75A4-4B92-9488-5A57E467DAC6} = {BCA26C72-2CAC-4198-BE9B-2E474FF36E04}
 		{5332F692-7321-473F-9DA7-96B24C8B008D} = {37FD2819-75A4-4B92-9488-5A57E467DAC6}
+		{AB973C2E-7FAF-463A-9E3E-7FBD035F2A6F} = {D6506BF3-6AB9-4F9F-80BC-7C98C26F25EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B93E6720-CF05-41E7-AA72-4FDF0DCF6553}
