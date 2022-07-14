@@ -12,9 +12,12 @@ namespace DotVida.Domain.Entities
         public DateTime DateExit { get; set; }
 
         [Required(ErrorMessage = "Status de entrada vazio")]
-        public string StatusEntry { get; set; }
+        public string? StatusEntry { get; set; }
+
+        public Guid PatientId { get; set; }
+        public Patient? Patient { get; set; }
 
         [Required(ErrorMessage = "Atendimento vazio")]
-        public IEnumerable<Attendance> Attendance { get; set; }
+        public IEnumerable<Attendance> ?Attendance { get; set; }
     }
 }

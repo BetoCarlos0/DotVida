@@ -28,7 +28,22 @@ namespace DotVida.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> GetPatient(Guid id)
         {
-            return Ok(await _repository.GetByIdAsnc(id));
+            var patient = await _repository.GetByIdAsnc(id);
+
+            if (patient == null)
+                return NotFound("Paciente não encontrado");
+
+            return Ok(patient);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpPost]
+        public async Task<IActionResult> PostPatient(Patient patient)
+        {
+            await _repository.CreateAsync(patient);
+
+            return Ok(patient);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasIndex("PatientEntryId");
 
-                    b.ToTable("Attendances");
+                    b.ToTable("Attendances", (string)null);
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Doctor", b =>
@@ -117,7 +117,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Doctors", (string)null);
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Patient", b =>
@@ -155,7 +155,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patients");
+                    b.ToTable("Patients", (string)null);
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.PatientEntry", b =>
@@ -182,7 +182,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("PatientsEntry");
+                    b.ToTable("PatientsEntry", (string)null);
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.PersonalSick", b =>
@@ -218,7 +218,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasIndex("SickId");
 
-                    b.ToTable("PersonalSicks");
+                    b.ToTable("PersonalSicks", (string)null);
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Sick", b =>
@@ -244,7 +244,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sicks");
+                    b.ToTable("Sicks", (string)null);
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Attendance", b =>
