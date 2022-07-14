@@ -11,7 +11,7 @@ namespace DotVida.Infra.Data.Context
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<PatientEntry> PatientsEntry { get; set; }
-        public DbSet<Personal_Illness> Personal_Illnesses { get; set; }
+        public DbSet<PersonalSick> PersonalSicks { get; set; }
         public DbSet<Sick> Sicks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotVida.Infra.Data.Migrations
 {
     [DbContext(typeof(DotVidaDbContext))]
-    [Migration("20220714001416_Initial")]
+    [Migration("20220714114425_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,15 +42,15 @@ namespace DotVida.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Height")
-                        .HasPrecision(1, 2)
-                        .HasColumnType("decimal(1,2)");
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
 
                     b.Property<Guid?>("PatientEntryId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Weight")
-                        .HasPrecision(3, 2)
-                        .HasColumnType("decimal(3,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
@@ -187,7 +187,7 @@ namespace DotVida.Infra.Data.Migrations
                     b.ToTable("PatientsEntry");
                 });
 
-            modelBuilder.Entity("DotVida.Domain.Entities.Personal_Illness", b =>
+            modelBuilder.Entity("DotVida.Domain.Entities.PersonalSick", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -220,7 +220,7 @@ namespace DotVida.Infra.Data.Migrations
 
                     b.HasIndex("SickId");
 
-                    b.ToTable("Personal_Illnesses");
+                    b.ToTable("PersonalSicks");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Sick", b =>
@@ -271,14 +271,14 @@ namespace DotVida.Infra.Data.Migrations
                         .HasForeignKey("PatientId");
                 });
 
-            modelBuilder.Entity("DotVida.Domain.Entities.Personal_Illness", b =>
+            modelBuilder.Entity("DotVida.Domain.Entities.PersonalSick", b =>
                 {
                     b.HasOne("DotVida.Domain.Entities.Attendance", null)
-                        .WithMany("Personal_Illness")
+                        .WithMany("PersonalSick")
                         .HasForeignKey("AttendanceId");
 
                     b.HasOne("DotVida.Domain.Entities.Patient", null)
-                        .WithMany("Personal_Illness")
+                        .WithMany("PersonalSick")
                         .HasForeignKey("PatientId");
 
                     b.HasOne("DotVida.Domain.Entities.Sick", "Sick")
@@ -292,14 +292,14 @@ namespace DotVida.Infra.Data.Migrations
 
             modelBuilder.Entity("DotVida.Domain.Entities.Attendance", b =>
                 {
-                    b.Navigation("Personal_Illness");
+                    b.Navigation("PersonalSick");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.Patient", b =>
                 {
                     b.Navigation("PatientEntry");
 
-                    b.Navigation("Personal_Illness");
+                    b.Navigation("PersonalSick");
                 });
 
             modelBuilder.Entity("DotVida.Domain.Entities.PatientEntry", b =>

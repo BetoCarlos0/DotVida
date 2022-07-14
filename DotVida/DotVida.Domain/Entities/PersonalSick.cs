@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DotVida.Domain.Entities
 {
-    public class Personal_Illness : EntityBase // Enfermidade Pessoal
+    public class PersonalSick : EntityBase // doença pessoal
     {
         [Required(ErrorMessage = "Comentário vazio")]
         public string Comments { get; set; }
@@ -13,6 +13,7 @@ namespace DotVida.Domain.Entities
 
         [Required(ErrorMessage = "Id da doença vazia")]
         public Guid SickId { get; set; }
+
         [Required(ErrorMessage = "Doença vazia")]
         public Sick Sick { get; set; }
     }

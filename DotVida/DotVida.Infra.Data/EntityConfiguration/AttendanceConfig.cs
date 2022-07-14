@@ -10,11 +10,11 @@ namespace DotVida.Infra.Data.EntityConfiguration
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Weight)
-                .HasPrecision(3, 2)
+                .HasPrecision(5, 2)
                 .IsRequired();
 
             builder.Property(x => x.Height)
-                .HasPrecision(1, 2)
+                .HasPrecision(3, 2)
                 .IsRequired();
 
             builder.Property(x => x.CommentsDoctor)

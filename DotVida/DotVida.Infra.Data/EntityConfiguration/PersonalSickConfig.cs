@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DotVida.Infra.Data.EntityConfiguration
 {
-    public class Personal_IllnessConfig : IEntityTypeConfiguration<Personal_Illness>
+    public class PersonalSickConfig : IEntityTypeConfiguration<PersonalSick>
     {
-        public void Configure(EntityTypeBuilder<Personal_Illness> builder)
+        public void Configure(EntityTypeBuilder<PersonalSick> builder)
         {
             builder.HasKey(x => x.Id);
 
