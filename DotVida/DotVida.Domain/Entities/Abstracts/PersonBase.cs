@@ -23,6 +23,16 @@ namespace DotVida.Domain.Entities.Abstracts
 
         [Required(ErrorMessage = "Status da pessoa vazio")]
         public bool PersonStatus { get; set; }    // vivo, morto
+
+        public List<string> GetGenders()
+        {
+            return new List<string> { "Homem cis", "Mulher cis", "Homem trans", "Mulher trans", "Outros"};
+        }
+
+        public List<string> GetBloodTypes()
+        {
+            return new List<string> { "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-" };
+        }
     }
 }
 

@@ -1,6 +1,5 @@
 ﻿using DotVida.Domain.Entities;
 using DotVida.Domain.Interfaces;
-using DotVida.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
@@ -71,6 +70,20 @@ namespace DotVida.Api.Controllers
             await _repository.RemoveAsync(id);
 
             return Ok();
+        }
+
+        [HttpGet("bloodtypes")]
+        public ActionResult<IEnumerable<string>> GetAllBloodType()
+        {
+            var bloodtypes = new Patient();
+            return bloodtypes.GetBloodTypes();
+        }
+
+        [HttpGet("genders")]
+        public ActionResult<IEnumerable<string>> GetAllGender()
+        {
+            var gender = new Patient();
+            return gender.GetGenders();
         }
     }
 }

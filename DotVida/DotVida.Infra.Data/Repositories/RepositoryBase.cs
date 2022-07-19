@@ -39,6 +39,8 @@ namespace DotVida.Infra.Data.Repositories
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
 
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }

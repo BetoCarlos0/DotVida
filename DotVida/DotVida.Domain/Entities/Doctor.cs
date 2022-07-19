@@ -12,5 +12,13 @@ namespace DotVida.Domain.Entities
 
         [Required(ErrorMessage = "Especialização vazia")]
         public string? Specialty { get; set; }
+
+        public List<string> GetSpecialty()
+        {
+            return new List<string> { "Cardiologista", "Dermatologista", "Ginecologista e Obstetrícista",
+                                    "Ortopedista", "Anestesiologista", "Pediatra", "Oftamologista", "Psiquiatra",
+                                    "Urologista", "Oncologista", "Endocrinologista", "Neorologista", "Hematologista",
+                                    "Cirurgião Plático"};
+        }
     }
 }

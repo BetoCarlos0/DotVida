@@ -19,5 +19,10 @@ namespace DotVida.Domain.Entities
 
         [Required(ErrorMessage = "Atendimento vazio")]
         public IEnumerable<Attendance> ?Attendance { get; set; }
+
+        public List<string> GetStatusEntry()
+        {
+            return new List<string> { "Finalizado", "Em Andamento"};
+        }
     }
 }
