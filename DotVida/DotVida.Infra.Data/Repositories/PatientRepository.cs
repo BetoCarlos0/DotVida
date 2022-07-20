@@ -1,6 +1,7 @@
 ﻿using DotVida.Domain.Entities;
 using DotVida.Domain.Interfaces;
 using DotVida.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotVida.Infra.Data.Repositories
 {

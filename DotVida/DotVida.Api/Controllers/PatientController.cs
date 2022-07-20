@@ -25,9 +25,9 @@ namespace DotVida.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patient>> GetPatient(Guid id)
+        public async Task<ActionResult<Patient>> GetByIdAsync(Guid id)
         {
-            var patient = await _repository.GetByIdAsnc(id);
+            var patient = await _repository.GetByIdAsync(id);
 
             if (patient == null)
                 return NotFound("Paciente não encontrado");

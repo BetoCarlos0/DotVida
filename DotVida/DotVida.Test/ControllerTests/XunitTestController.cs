@@ -30,18 +30,18 @@ namespace DotVida.Test.ControllerTests
         [Fact, Trait("Patient", "GetPatient")]
         public async Task GetEntity_WhenCalled_ReturnNotFound()
         {
-            _repositoryMock.Setup(x => x.GetByIdAsnc(It.IsAny<Guid>()));
+            _repositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()));
             var controller = new PatientController(_repositoryMock.Object);
 
             var id = new Guid("ff62f258-8337-4d95-9460-5b0078447a62");
-            var patient = await controller.GetPatient(id);
+            var patient = await controller.GetByIdAsync(id);
 
             var result = patient.Result;
             Assert.IsType<NotFoundObjectResult>(result);
         }
 
         [Fact, Trait("Patient", "PostPatient")]
-        public async Task GetEntity_LabelEmpty_ReturnBadRequest()
+        public async Task PostEntity_LabelEmpty_ReturnBadRequest()
         {
             var newPatient = new Patient
             {
@@ -63,7 +63,7 @@ namespace DotVida.Test.ControllerTests
         }
 
         [Fact, Trait("Patient", "PostPatient")]
-        public async Task GetEntity_WhenCalled_ReturnOk()
+        public async Task PostEntity_WhenCalled_ReturnOk()
         {
             var newPatient = new Patient
             {
@@ -84,7 +84,27 @@ namespace DotVida.Test.ControllerTests
         }
 
         [Fact, Trait("Patient", "PutPatient")]
-        public async Task GetEntity_WhenCalled_ReturnBadRequest()
+        public async Task PutEntity_WhenCalled_ReturnBadRequest()
+        {
+            var newPatient = new Patient
+            {
+                Name = "teste 1",
+                CPF = "321.654.987-54",
+                Age = 34,
+                Gender = "homem cis",
+                BloodType = "A+",
+                PersonStatus = true
+            };
+            _repositoryMock.Setup(x => x.UpdateAsync(newPatient));
+            var controller = new PatientController(_repositoryMock.Object);
+
+            var patient = await controller.PutPatient(newPatient);
+
+            Assert.IsType<OkResult>(patient);
+        }
+
+        [Fact, Trait("Patient", "PutPatient")]
+        public async Task PutEntity_WhenCalled_ReturnOk()
         {
             var newPatient = new Patient
             {

@@ -19,7 +19,7 @@ namespace DotVida.Infra.Data.Repositories
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsnc(Guid id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
@@ -39,7 +39,7 @@ namespace DotVida.Infra.Data.Repositories
         {
             var entity = await _dbContext.Set<T>().FindAsync(id);
 
-            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (entity == null) throw new ArgumentNullException("resultado vazio");
 
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
