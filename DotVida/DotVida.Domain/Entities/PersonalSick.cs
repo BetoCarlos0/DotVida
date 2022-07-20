@@ -1,5 +1,6 @@
 ﻿using DotVida.Domain.Entities.Abstracts;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DotVida.Domain.Entities
 {
@@ -11,11 +12,15 @@ namespace DotVida.Domain.Entities
         [Required(ErrorMessage = "Status da doença vazia")]
         public string ?StatusSick { get; set; }  // status enfermidade
 
-        [Required(ErrorMessage = "Id da doença vazia")]
+        [JsonIgnore]
         public Guid SickId { get; set; }
 
         [Required(ErrorMessage = "Doença vazia")]
         public Sick ?Sick { get; set; }
+
+        public Guid PatientId { get; set; }
+
+        public Guid AttendanceId { get; set; }
 
         public List<string> GetStatusSick()
         {

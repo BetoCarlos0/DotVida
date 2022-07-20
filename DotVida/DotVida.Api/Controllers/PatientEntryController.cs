@@ -4,33 +4,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
 {
-    [Route("api/pacientes/entradas")]
+    [Route("api/pacientes")]
     [ApiController]
     public class PatientEntryController : ControllerBase
     {
-        private readonly IPatientEntryRepository _patientEntryRepository;
+        private readonly IPatientEntryRepository _repository;
 
         public PatientEntryController(IPatientEntryRepository patientEntryRepository)
         {
-            _patientEntryRepository = patientEntryRepository;
+            _repository = patientEntryRepository;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("{id}")]
+        [HttpGet("{id}/entradas")]
         public async Task<IEnumerable<PatientEntry>> GetAllEntryByIdAsync(Guid id)
         {
-            return await _patientEntryRepository.GetAllByIdAsync(id);
+            return await _repository.GetAllByIdAsync(id);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpPost]
+        [HttpPost("entradas")]
         public async Task<IActionResult> PostPatientEntry(PatientEntry patient)
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _patientEntryRepository.CreateAsync(patient);
+            await _repository.CreateAsync(patient);
 
             return Ok();
         }
@@ -38,17 +38,17 @@ namespace DotVida.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPut]
+        [HttpPut("entradas")]
         public async Task<IActionResult> PutPatientEntry(PatientEntry patient)
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _patientEntryRepository.UpdateAsync(patient);
+            await _repository.UpdateAsync(patient);
 
             return Ok();
         }
 
-        [HttpGet("status")]
+        [HttpGet("entradas/status")]
         public ActionResult<IEnumerable<string>> GetAllStatusEntry()
         {
             var status = new PatientEntry();

@@ -4,5 +4,6 @@ namespace DotVida.Domain.Interfaces
 {
     public interface IPersonalSickRepository : IRepositoryBase<PersonalSick>
     {
+        Task<IEnumerable<PersonalSick>> GetAllByIdAsync(Guid id);
     }
 }

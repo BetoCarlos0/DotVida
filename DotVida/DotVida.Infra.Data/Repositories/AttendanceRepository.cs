@@ -15,7 +15,10 @@ namespace DotVida.Infra.Data.Repositories
 
         public async Task<IEnumerable<Attendance>> GetAllByIdAsync(Guid id)
         {
-            return await _context.Attendances.Where(x => x.PatientEntryId.Equals(id)).ToListAsync();
+            return await _context.Attendances
+                .Include(x => x.Doctor)
+                .Where(x => x.PatientEntryId.Equals(id))
+                .ToListAsync();
         }
     }
 }
