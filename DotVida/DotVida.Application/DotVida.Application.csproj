@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Mapper\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotVida.Domain\DotVida.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

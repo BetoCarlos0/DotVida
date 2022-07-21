@@ -1,6 +1,6 @@
 ﻿using DotVida.Domain.Entities;
 
-namespace DotVida.Domain.Interfaces
+namespace DotVida.Domain.Interfaces.Repositoies
 {
     public interface IDoctorRepository : IRepositoryBase<Doctor>
     {

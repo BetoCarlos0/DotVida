@@ -1,4 +1,5 @@
-﻿using DotVida.Domain.Entities;
+﻿using DotVida.Application.Interfaces;
+using DotVida.Domain.Entities;
 using DotVida.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace DotVida.Api.Controllers
     [ApiController]
     public class AttendanceController : ControllerBase
     {
-        private readonly IAttendanceRepository _repository;
+        private readonly IAppAttendanceService _repository;
 
-        public AttendanceController(IAttendanceRepository attendanceRepository)
+        public AttendanceController(IAppAttendanceService attendanceRepository)
         {
             _repository = attendanceRepository;
         }
