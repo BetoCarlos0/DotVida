@@ -1,5 +1,5 @@
 ﻿using DotVida.Domain.Entities.Abstracts;
-using DotVida.Domain.Interfaces;
+using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 

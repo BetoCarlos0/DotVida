@@ -1,11 +1,9 @@
 ﻿using DotVida.Api.Controllers;
+using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities;
-using DotVida.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -13,7 +11,7 @@ namespace DotVida.Test.ControllerTests
 {
     public class XunitTestController
     {
-        private readonly Mock<IPatientRepository> _repositoryMock = new();
+        private readonly Mock<IAppPatientService> _repositoryMock = new();
 
         [Fact, Trait("Patient", "GetAllPatients")]
         public async Task GetAllEntities_WhenCalled_ReturnEmpty()

@@ -1,6 +1,5 @@
 ﻿using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities;
-using DotVida.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
@@ -9,11 +8,11 @@ namespace DotVida.Api.Controllers
     [ApiController]
     public class AttendanceController : ControllerBase
     {
-        private readonly IAppAttendanceService _repository;
+        private readonly IAppAttendanceService _service;
 
-        public AttendanceController(IAppAttendanceService attendanceRepository)
+        public AttendanceController(IAppAttendanceService attendanceService)
         {
-            _repository = attendanceRepository;
+            _service = attendanceService;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -21,7 +20,7 @@ namespace DotVida.Api.Controllers
         [HttpGet("{id}/atendimentos")]
         public async Task<IEnumerable<Attendance>> GetAllAttendanceByIdAsync(Guid id)
         {
-            return await _repository.GetAllByIdAsync(id);
+            return await _service.GetAllByIdAsync(id);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -31,7 +30,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.CreateAsync(attendance);
+            await _service.CreateAsync(attendance);
 
             return Ok();
         }
@@ -44,7 +43,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.UpdateAsync(attendance);
+            await _service.UpdateAsync(attendance);
 
             return Ok();
         }

@@ -1,5 +1,5 @@
-﻿using DotVida.Domain.Entities;
-using DotVida.Domain.Interfaces;
+﻿using DotVida.Application.Interfaces;
+using DotVida.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
@@ -8,18 +8,18 @@ namespace DotVida.Api.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        private readonly IPatientRepository _repository;
+        private readonly IAppPatientService _service;
 
-        public PatientController(IPatientRepository repository)
+        public PatientController(IAppPatientService patientService)
         {
-            _repository = repository;
+            _service = patientService;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Patient>>> GetAllPatients()
         {
-            return Ok(await _repository.GetAllAsync());
+            return Ok(await _service.GetAllAsync());
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -27,7 +27,7 @@ namespace DotVida.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> GetByIdAsync(Guid id)
         {
-            var patient = await _repository.GetByIdAsync(id);
+            var patient = await _service.GetByIdAsync(id);
 
             if (patient == null)
                 return NotFound("Paciente não encontrado");
@@ -42,7 +42,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.CreateAsync(patient);
+            await _service.CreateAsync(patient);
 
             return Ok();
         }
@@ -55,7 +55,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.UpdateAsync(patient);
+            await _service.UpdateAsync(patient);
 
             return Ok();
         }
@@ -67,7 +67,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.RemoveAsync(id);
+            await _service.RemoveAsync(id);
 
             return Ok();
         }

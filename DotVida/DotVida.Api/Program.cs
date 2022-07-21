@@ -1,4 +1,7 @@
-using DotVida.Domain.Interfaces;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using DotVida.Domain.Interfaces.Repositoies;
+using DotVida.Infra.CrossCutting.IOC;
 using DotVida.Infra.Data.Context;
 using DotVida.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -12,12 +15,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-builder.Services.AddScoped<IPatientEntryRepository, PatientEntryRepository>();
-builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-builder.Services.AddScoped<IPersonalSickRepository, PersonalSickRepository>();
-builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+//builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+//builder.Services.AddScoped<IPatientEntryRepository, PatientEntryRepository>();
+//builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+//builder.Services.AddScoped<IPersonalSickRepository, PersonalSickRepository>();
+//builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+//builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(builder =>
+    builder.RegisterModule(new ModuleIOC())
+));
 
 builder.Services.AddDbContext<DotVidaDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

@@ -1,34 +1,41 @@
 ﻿using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities.Abstracts;
+using DotVida.Domain.Interfaces.Services;
 
 namespace DotVida.Application
 {
     public class AppServiceBase<T> : IAppServiceBase<T> where T : EntityBase
     {
+        private readonly IServiceBase<T> _serviceBase;
 
-        public Task CreateAsync(T entity)
+        public AppServiceBase(IServiceBase<T> serviceBase)
         {
-            throw new NotImplementedException();
+            _serviceBase = serviceBase;
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _serviceBase.CreateAsync(entity);
         }
 
-        public Task<T> GetByIdAsync(Guid Id)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _serviceBase.GetAllAsync();
         }
 
-        public Task RemoveAsync(Guid id)
+        public async Task<T> GetByIdAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            return await _serviceBase.GetByIdAsync(Id);
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _serviceBase.RemoveAsync(id);
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            await _serviceBase.UpdateAsync(entity);
         }
     }
 }

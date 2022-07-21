@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotVida.Application\DotVida.Application.csproj" />
+    <ProjectReference Include="..\DotVida.Infra.CrossCutting\DotVida.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\DotVida.Infra.Data\DotVida.Infra.Data.csproj" />
   </ItemGroup>
 

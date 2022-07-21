@@ -1,5 +1,5 @@
 ﻿using DotVida.Domain.Entities;
-using DotVida.Domain.Interfaces;
+using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +15,9 @@ namespace DotVida.Infra.Data.Repositories
 
         public async Task<IEnumerable<PatientEntry>> GetAllByIdAsync(Guid id)
         {
-            return await _context.PatientsEntry.Where(x => x.PatientId.Equals(id)).ToListAsync();
+            return await _context.PatientsEntry
+                .Where(x => x.PatientId.Equals(id))
+                .ToListAsync();
         }
     }
 }

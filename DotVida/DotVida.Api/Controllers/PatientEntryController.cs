@@ -1,5 +1,5 @@
-﻿using DotVida.Domain.Entities;
-using DotVida.Domain.Interfaces;
+﻿using DotVida.Application.Interfaces;
+using DotVida.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
@@ -8,11 +8,11 @@ namespace DotVida.Api.Controllers
     [ApiController]
     public class PatientEntryController : ControllerBase
     {
-        private readonly IPatientEntryRepository _repository;
+        private readonly IAppPatientEntryService _service;
 
-        public PatientEntryController(IPatientEntryRepository patientEntryRepository)
+        public PatientEntryController(IAppPatientEntryService patientEntryService)
         {
-            _repository = patientEntryRepository;
+            _service = patientEntryService;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -20,7 +20,7 @@ namespace DotVida.Api.Controllers
         [HttpGet("{id}/entradas")]
         public async Task<IEnumerable<PatientEntry>> GetAllEntryByIdAsync(Guid id)
         {
-            return await _repository.GetAllByIdAsync(id);
+            return await _service.GetAllByIdAsync(id);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -30,7 +30,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.CreateAsync(patient);
+            await _service.CreateAsync(patient);
 
             return Ok();
         }
@@ -43,7 +43,7 @@ namespace DotVida.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _repository.UpdateAsync(patient);
+            await _service.UpdateAsync(patient);
 
             return Ok();
         }
