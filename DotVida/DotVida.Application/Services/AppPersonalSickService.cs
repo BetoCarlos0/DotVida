@@ -2,7 +2,7 @@
 using DotVida.Domain.Entities;
 using DotVida.Domain.Interfaces.Services;
 
-namespace DotVida.Application
+namespace DotVida.Application.Services
 {
     public class AppPersonalSickService : AppServiceBase<PersonalSick>, IAppPersonalSickService
     {

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Net;
 
 namespace DotVida.Domain.Entities.Abstracts
 {
@@ -13,7 +12,7 @@ namespace DotVida.Domain.Entities.Abstracts
         public string? CPF { get; set; }
 
         [Required(ErrorMessage = "Idade vazia"), Range(18, 120, ErrorMessage = "Idade inválida")]
-        public int Age{ get; set; }
+        public int Age { get; set; }
 
         [Required(ErrorMessage = "Sexo vazio")]
         public string? Gender { get; set; }
@@ -26,7 +25,7 @@ namespace DotVida.Domain.Entities.Abstracts
 
         public List<string> GetGenders()
         {
-            return new List<string> { "Homem cis", "Mulher cis", "Homem trans", "Mulher trans", "Outros"};
+            return new List<string> { "Homem cis", "Mulher cis", "Homem trans", "Mulher trans", "Outros" };
         }
 
         public List<string> GetBloodTypes()

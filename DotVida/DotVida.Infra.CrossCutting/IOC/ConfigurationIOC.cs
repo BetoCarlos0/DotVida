@@ -1,6 +1,8 @@
 ﻿using Autofac;
-using DotVida.Application;
+using AutoMapper;
 using DotVida.Application.Interfaces;
+using DotVida.Application.Mapper;
+using DotVida.Application.Services;
 using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Domain.Interfaces.Services;
 using DotVida.Domain.Services;
@@ -32,6 +34,13 @@ namespace DotVida.Infra.CrossCutting.IOC
             builder.RegisterType<PatientRepository>().As<IPatientRepository>();
             builder.RegisterType<PersonalSickRepository>().As<IPersonalSickRepository>();
             builder.RegisterType<SickRepository>().As<ISickRepository>();
+
+            builder.Register(ctx => new MapperConfiguration(cfx =>
+            {
+                cfx.AddProfile(new DtoToPatient());
+            }));
+
+            builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
         }
     }
 }

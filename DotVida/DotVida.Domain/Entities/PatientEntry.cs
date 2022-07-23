@@ -20,11 +20,11 @@ namespace DotVida.Domain.Entities
         public Patient? Patient { get; set; }
 
         [JsonIgnore]
-        public IEnumerable<Attendance> ?Attendance { get; set; }
+        public IEnumerable<Attendance>? Attendance { get; set; }
 
         public List<string> GetStatusEntry()
         {
-            return new List<string> { "Finalizado", "Em Andamento"};
+            return new List<string> { "Finalizado", "Em Andamento" };
         }
     }
 }

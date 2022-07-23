@@ -1,9 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Infra.CrossCutting.IOC;
 using DotVida.Infra.Data.Context;
-using DotVida.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
