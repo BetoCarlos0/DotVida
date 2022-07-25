@@ -12,7 +12,7 @@ namespace DotVida.Domain.Entities
         [Required(ErrorMessage = "Status da doença vazia")]
         public string? StatusSick { get; set; }  // status enfermidade
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public Guid SickId { get; set; }
 
         [Required(ErrorMessage = "Doença vazia")]

@@ -26,7 +26,7 @@ namespace DotVida.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Patient>> GetByIdAsync(Guid id)
+        public async Task<ActionResult<PatientDto>> GetByIdAsync(Guid id)
         {
             var patient = await _service.GetByIdAsync(id);
 

@@ -1,4 +1,5 @@
 ﻿using DotVida.Api.Controllers;
+using DotVida.Application.Dtos;
 using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -41,14 +42,12 @@ namespace DotVida.Test.ControllerTests
         [Fact, Trait("Patient", "PostPatient")]
         public async Task PostEntity_LabelEmpty_ReturnBadRequest()
         {
-            var newPatient = new Patient
+            var newPatient = new PatientDto
             {
                 Id = new Guid("d9dd53b0-0529-4c7c-a586-091105cb67f9"),
                 //Name = "teste 1",
                 CPF = "321.654.987-54",
-                Age = 34,
                 Gender = "homem cis",
-                BloodType = "A+",
                 PersonStatus = true
             };
             _repositoryMock.Setup(x => x.CreateAsync(newPatient));
@@ -63,14 +62,12 @@ namespace DotVida.Test.ControllerTests
         [Fact, Trait("Patient", "PostPatient")]
         public async Task PostEntity_WhenCalled_ReturnOk()
         {
-            var newPatient = new Patient
+            var newPatient = new PatientDto
             {
                 Id = new Guid("d9dd53b0-0529-4c7c-a586-091105cb67f9"),
                 Name = "teste 1",
                 CPF = "321.654.987-54",
-                Age = 34,
                 Gender = "homem cis",
-                BloodType = "A+",
                 PersonStatus = true
             };
             _repositoryMock.Setup(x => x.CreateAsync(newPatient));
@@ -84,13 +81,11 @@ namespace DotVida.Test.ControllerTests
         [Fact, Trait("Patient", "PutPatient")]
         public async Task PutEntity_WhenCalled_ReturnBadRequest()
         {
-            var newPatient = new Patient
+            var newPatient = new PatientDto
             {
                 Name = "teste 1",
                 CPF = "321.654.987-54",
-                Age = 34,
                 Gender = "homem cis",
-                BloodType = "A+",
                 PersonStatus = true
             };
             _repositoryMock.Setup(x => x.UpdateAsync(newPatient));
@@ -104,13 +99,11 @@ namespace DotVida.Test.ControllerTests
         [Fact, Trait("Patient", "PutPatient")]
         public async Task PutEntity_WhenCalled_ReturnOk()
         {
-            var newPatient = new Patient
+            var newPatient = new PatientDto
             {
                 Name = "teste 1",
                 CPF = "321.654.987-54",
-                Age = 34,
                 Gender = "homem cis",
-                BloodType = "A+",
                 PersonStatus = true
             };
             _repositoryMock.Setup(x => x.UpdateAsync(newPatient));

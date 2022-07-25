@@ -1,4 +1,5 @@
-﻿using DotVida.Application.Interfaces;
+﻿using DotVida.Application.Dtos;
+using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace DotVida.Api.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Doctor>>> GetAllDoctor()
+        public async Task<ActionResult<IEnumerable<DoctorDto>>> GetAllDoctor()
         {
             return Ok(await _service.GetAllAsync());
         }
@@ -25,7 +26,7 @@ namespace DotVida.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Doctor>> GetByIdAsync(Guid id)
+        public async Task<ActionResult<DoctorDto>> GetByIdAsync(Guid id)
         {
             var doctor = await _service.GetByIdAsync(id);
 
@@ -38,7 +39,7 @@ namespace DotVida.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
-        public async Task<IActionResult> PostDoctor(Doctor doctor)
+        public async Task<IActionResult> PostDoctor(DoctorNewDto doctor)
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
@@ -51,7 +52,7 @@ namespace DotVida.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPut]
-        public async Task<IActionResult> PutDoctor(Doctor doctor)
+        public async Task<IActionResult> PutDoctor(DoctorNewDto doctor)
         {
             if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 

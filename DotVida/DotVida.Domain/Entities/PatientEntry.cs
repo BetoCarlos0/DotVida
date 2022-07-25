@@ -16,10 +16,10 @@ namespace DotVida.Domain.Entities
         public string? StatusEntry { get; set; }
 
         public Guid PatientId { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public Patient? Patient { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public IEnumerable<Attendance>? Attendance { get; set; }
 
         public List<string> GetStatusEntry()

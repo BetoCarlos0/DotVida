@@ -16,12 +16,6 @@ namespace DotVida.Application.Services
             _mapper = mapper;
         }
 
-        public async Task CreateAsync(PatientDto entityDto)
-        {
-            var entity = _mapper.Map<Patient>(entityDto);
-            await _serviceBase.CreateAsync(entity);
-        }
-
         public async Task<IEnumerable<PatientDto>> GetAllAsync()
         {
             var entity = await _serviceBase.GetAllAsync();
@@ -30,16 +24,24 @@ namespace DotVida.Application.Services
             return entityDto;
         }
 
+        public async Task<PatientDto> GetByIdAsync(Guid Id)
+        {
+            var entity = await _serviceBase.GetByIdAsync(Id);
+            var entityDto = _mapper.Map<PatientDto>(entity);
+
+            return entityDto;
+        }
+
+        public async Task CreateAsync(PatientDto entityDto)
+        {
+            var entity = _mapper.Map<Patient>(entityDto);
+            await _serviceBase.CreateAsync(entity);
+        }
+
         public async Task UpdateAsync(PatientDto entityDto)
         {
             var entity = _mapper.Map<Patient>(entityDto);
             await _serviceBase.UpdateAsync(entity);
         }
-
-        //public async Task CreateAsync(PatientDto entityDto)
-        //{
-        //    var entity = _mapper.Map<Patient>(entityDto);
-        //    await _serviceBase.CreateAsync(entity);
-        //}
     }
 }

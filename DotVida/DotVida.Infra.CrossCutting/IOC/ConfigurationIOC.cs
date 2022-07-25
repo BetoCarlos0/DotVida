@@ -37,7 +37,9 @@ namespace DotVida.Infra.CrossCutting.IOC
 
             builder.Register(ctx => new MapperConfiguration(cfx =>
             {
-                cfx.AddProfile(new DtoToPatient());
+                cfx.AddProfile(new PatientToDto());
+                cfx.AddProfile(new DoctorToDto());
+                cfx.AddProfile(new DtoToDoctor());
             }));
 
             builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
