@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using AutoMapper;
+using DotVida.Application.Dtos;
 using DotVida.Application.Interfaces;
 using DotVida.Application.Mapper;
 using DotVida.Application.Services;
@@ -7,6 +8,8 @@ using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Domain.Interfaces.Services;
 using DotVida.Domain.Services;
 using DotVida.Infra.Data.Repositories;
+using DotVida.Service.Validators;
+using FluentValidation;
 
 namespace DotVida.Infra.CrossCutting.IOC
 {
@@ -34,6 +37,10 @@ namespace DotVida.Infra.CrossCutting.IOC
             builder.RegisterType<PatientRepository>().As<IPatientRepository>();
             builder.RegisterType<PersonalSickRepository>().As<IPersonalSickRepository>();
             builder.RegisterType<SickRepository>().As<ISickRepository>();
+
+            builder.RegisterType<PatientValidator>().As<IValidator<PatientDto>>();
+
+            builder.AddValidatorsFromAssemblyContaining
 
             builder.Register(ctx => new MapperConfiguration(cfx =>
             {

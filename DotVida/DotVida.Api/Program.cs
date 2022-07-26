@@ -13,13 +13,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-//builder.Services.AddScoped<IPatientEntryRepository, PatientEntryRepository>();
-//builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-//builder.Services.AddScoped<IPersonalSickRepository, PersonalSickRepository>();
-//builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-//builder.Services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
-
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(builder =>
     builder.RegisterModule(new ModuleIOC())
 ));

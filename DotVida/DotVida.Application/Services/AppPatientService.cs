@@ -10,6 +10,7 @@ namespace DotVida.Application.Services
     {
         private readonly IPatientService _serviceBase;
         private readonly IMapper _mapper;
+        private readonly IValidator
         public AppPatientService(IPatientService serviceBase, IMapper mapper) : base(serviceBase)
         {
             _serviceBase = serviceBase;

@@ -4,7 +4,7 @@ namespace DotVida.Domain.Entities.Abstracts
 {
     public abstract class PersonBase : EntityBase
     {
-        [Required(ErrorMessage = "Nome vazio")]
+        //[Required(ErrorMessage = "Nome vazio")]
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "CPF vazio")]
