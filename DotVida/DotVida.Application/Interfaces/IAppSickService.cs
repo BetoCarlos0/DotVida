@@ -2,7 +2,10 @@
 
 namespace DotVida.Application.Interfaces
 {
-    public interface IAppSickService : IAppServiceBase<Sick>
-    {
+    public interface IAppSickService
+    {/*
+        Task<Sick> GetByIdAsync(Guid Id);
+        Task CreateAsync(Sick entity);
+        Task UpdateAsync(Sick entity);*/
     }
 }

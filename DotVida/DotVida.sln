@@ -38,8 +38,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotVida.Application", "DotV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotVida.Infra.CrossCutting", "DotVida.Infra.CrossCutting\DotVida.Infra.CrossCutting.csproj", "{11265CB7-44CE-49EA-80F9-9A5742A0401D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotVida.Service", "DotVida.Service\DotVida.Service.csproj", "{0718F118-AED2-4B12-BC68-C9F39027214F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,10 +68,6 @@ Global
 		{11265CB7-44CE-49EA-80F9-9A5742A0401D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11265CB7-44CE-49EA-80F9-9A5742A0401D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11265CB7-44CE-49EA-80F9-9A5742A0401D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0718F118-AED2-4B12-BC68-C9F39027214F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0718F118-AED2-4B12-BC68-C9F39027214F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0718F118-AED2-4B12-BC68-C9F39027214F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0718F118-AED2-4B12-BC68-C9F39027214F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,7 +83,6 @@ Global
 		{66D94DD9-AF2C-4180-B6DE-F0F7F1F3E35F} = {BCA26C72-2CAC-4198-BE9B-2E474FF36E04}
 		{0610C07E-B357-453C-B8B0-BC20D208EAD9} = {66D94DD9-AF2C-4180-B6DE-F0F7F1F3E35F}
 		{11265CB7-44CE-49EA-80F9-9A5742A0401D} = {9437A905-A029-49D0-A77C-7494D4504778}
-		{0718F118-AED2-4B12-BC68-C9F39027214F} = {108273B9-DF35-4307-B6B9-CBC9BE49CF3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B93E6720-CF05-41E7-AA72-4FDF0DCF6553}

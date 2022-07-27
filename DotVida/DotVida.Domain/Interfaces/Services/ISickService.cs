@@ -2,7 +2,10 @@
 
 namespace DotVida.Domain.Interfaces.Services
 {
-    public interface ISickService : IServiceBase<Sick>
+    public interface ISickService
     {
+        Task<Sick> GetByIdAsync(Guid Id);
+        Task CreateAsync(Sick entity);
+        Task UpdateAsync(Sick entity);
     }
 }

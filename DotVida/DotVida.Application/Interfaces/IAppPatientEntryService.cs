@@ -2,8 +2,10 @@
 
 namespace DotVida.Application.Interfaces
 {
-    public interface IAppPatientEntryService : IAppServiceBase<PatientEntry>
+    public interface IAppPatientEntryService
     {
         Task<IEnumerable<PatientEntry>> GetAllByIdAsync(Guid id);
+        Task CreateAsync(PatientEntry entity);
+        Task UpdateAsync(PatientEntry entity);
     }
 }

@@ -41,11 +41,11 @@ namespace DotVida.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostPatient(PatientDto patientDto)
         {
-            if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
+            //if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
 
-            await _service.CreateAsync(patientDto);
-
-            return Ok();
+            var result = await _service.CreateAsync(patientDto);
+            if (result.IsSuccessStatusCode)
+                return Ok();
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

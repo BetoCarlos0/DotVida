@@ -6,11 +6,11 @@ using DotVida.Domain.Interfaces.Services;
 
 namespace DotVida.Application.Services
 {
-    public class AppDoctorService : AppServiceBase<Doctor>, IAppDoctorService
+    public class AppDoctorService : IAppDoctorService
     {
         private readonly IDoctorService _serviceBase;
         private readonly IMapper _mapper;
-        public AppDoctorService(IDoctorService serviceBase, IMapper mapper) : base(serviceBase)
+        public AppDoctorService(IDoctorService serviceBase, IMapper mapper)
         {
             _serviceBase = serviceBase;
             _mapper = mapper;
@@ -32,6 +32,14 @@ namespace DotVida.Application.Services
             return entityDto;
         }
 
+        public async Task<IEnumerable<DoctorDto>> GetAllByNameAsync(string name)
+        {
+            var entity = await _serviceBase.GetAllByNameAsync(name);
+            var entityDto = _mapper.Map<IEnumerable<DoctorDto>>(entity);
+
+            return entityDto;
+        }
+
         public async Task CreateAsync(DoctorNewDto entityDto)
         {
             var entity = _mapper.Map<Doctor>(entityDto);
@@ -42,6 +50,11 @@ namespace DotVida.Application.Services
         {
             var entity = _mapper.Map<Doctor>(entityDto);
             await _serviceBase.UpdateAsync(entity);
+        }
+
+        public async Task RemoveAsync(Guid id)
+        {
+            await _serviceBase.RemoveAsync(id);
         }
     }
 }

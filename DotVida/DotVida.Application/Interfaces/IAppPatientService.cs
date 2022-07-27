@@ -3,11 +3,13 @@ using DotVida.Domain.Entities;
 
 namespace DotVida.Application.Interfaces
 {
-    public interface IAppPatientService : IAppServiceBase<Patient>
+    public interface IAppPatientService
     {
         Task<IEnumerable<PatientDto>> GetAllAsync();
+        Task<IEnumerable<PatientDto>> GetAllByNameAsync(string name);
         Task<PatientDto> GetByIdAsync(Guid Id);
-        Task CreateAsync(PatientDto entity);
+        Task<HttpResponseMessage> CreateAsync(PatientDto entity);
         Task UpdateAsync(PatientDto entity);
+        Task RemoveAsync(Guid id);
     }
 }

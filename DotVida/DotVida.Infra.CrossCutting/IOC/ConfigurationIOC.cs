@@ -1,14 +1,14 @@
 ﻿using Autofac;
 using AutoMapper;
-using DotVida.Application.Dtos;
 using DotVida.Application.Interfaces;
 using DotVida.Application.Mapper;
 using DotVida.Application.Services;
+using DotVida.Domain.Entities;
 using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Domain.Interfaces.Services;
 using DotVida.Domain.Services;
+using DotVida.Domain.Validators;
 using DotVida.Infra.Data.Repositories;
-using DotVida.Service.Validators;
 using FluentValidation;
 
 namespace DotVida.Infra.CrossCutting.IOC
@@ -22,14 +22,14 @@ namespace DotVida.Infra.CrossCutting.IOC
             builder.RegisterType<AppPatientEntryService>().As<IAppPatientEntryService>();
             builder.RegisterType<AppPatientService>().As<IAppPatientService>();
             builder.RegisterType<AppPersonalSickService>().As<IAppPersonalSickService>();
-            builder.RegisterType<AppSickService>().As<IAppSickService>();
+            //builder.RegisterType<AppSickService>().As<IAppSickService>();
 
             builder.RegisterType<AttendanceService>().As<IAttendanceService>();
             builder.RegisterType<DoctorService>().As<IDoctorService>();
             builder.RegisterType<PatientEntryService>().As<IPatientEntryService>();
             builder.RegisterType<PatientService>().As<IPatientService>();
             builder.RegisterType<PersonalSickService>().As<IPersonalSickService>();
-            builder.RegisterType<SickService>().As<ISickService>();
+            //builder.RegisterType<SickService>().As<ISickService>();
 
             builder.RegisterType<AttendanceRepository>().As<IAttendanceRepository>();
             builder.RegisterType<DoctorRepository>().As<IDoctorRepository>();
@@ -38,9 +38,7 @@ namespace DotVida.Infra.CrossCutting.IOC
             builder.RegisterType<PersonalSickRepository>().As<IPersonalSickRepository>();
             builder.RegisterType<SickRepository>().As<ISickRepository>();
 
-            builder.RegisterType<PatientValidator>().As<IValidator<PatientDto>>();
-
-            builder.AddValidatorsFromAssemblyContaining
+            builder.RegisterType<PatientValidator>().As<IValidator<Patient>>();
 
             builder.Register(ctx => new MapperConfiguration(cfx =>
             {

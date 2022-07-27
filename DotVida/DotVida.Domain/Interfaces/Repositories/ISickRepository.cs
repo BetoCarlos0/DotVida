@@ -2,7 +2,7 @@
 
 namespace DotVida.Domain.Interfaces.Repositoies
 {
-    public interface ISickRepository : IRepositoryBase<Sick>
+    public interface ISickRepository
     {
     }
 }

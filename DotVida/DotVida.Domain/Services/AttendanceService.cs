@@ -4,11 +4,10 @@ using DotVida.Domain.Interfaces.Services;
 
 namespace DotVida.Domain.Services
 {
-    public class AttendanceService : ServiceBase<Attendance>, IAttendanceService
+    public class AttendanceService : IAttendanceService
     {
         private readonly IAttendanceRepository _repository;
-
-        public AttendanceService(IAttendanceRepository repository) : base(repository)
+        public AttendanceService(IAttendanceRepository repository)
         {
             _repository = repository;
         }
@@ -16,6 +15,16 @@ namespace DotVida.Domain.Services
         public async Task<IEnumerable<Attendance>> GetAllByIdAsync(Guid id)
         {
             return await _repository.GetAllByIdAsync(id);
+        }
+
+        public async Task CreateAsync(Attendance entity)
+        {
+            await _repository.CreateAsync(entity);
+        }
+
+        public async Task UpdateAsync(Attendance entity)
+        {
+            await _repository.UpdateAsync(entity);
         }
     }
 }

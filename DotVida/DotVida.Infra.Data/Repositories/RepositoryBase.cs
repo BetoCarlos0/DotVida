@@ -14,16 +14,6 @@ namespace DotVida.Infra.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
-        {
-            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
-        }
-
-        public async Task<T> GetByIdAsync(Guid id)
-        {
-            return await _dbContext.Set<T>().FindAsync(id);
-        }
-
         public async Task CreateAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
@@ -33,15 +23,6 @@ namespace DotVida.Infra.Data.Repositories
         public async Task UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
-            await _dbContext.SaveChangesAsync();
-        }
-        public async Task RemoveAsync(Guid id)
-        {
-            var entity = await _dbContext.Set<T>().FindAsync(id);
-
-            if (entity == null) throw new ArgumentNullException("resultado vazio");
-
-            _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
     }
