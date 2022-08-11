@@ -1,7 +1,10 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DotVida.Domain.Entities;
+using DotVida.Domain.Validators;
 using DotVida.Infra.CrossCutting.IOC;
 using DotVida.Infra.Data.Context;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,8 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory(builder =>
     builder.RegisterModule(new ModuleIOC())
 ));
+
+//builder.Services.AddScoped<IValidator<Patient>, PatientValidator>();
 
 builder.Services.AddDbContext<DotVidaDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));

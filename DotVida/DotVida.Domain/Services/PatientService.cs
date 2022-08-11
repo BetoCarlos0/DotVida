@@ -2,7 +2,6 @@
 using DotVida.Domain.Interfaces.Repositoies;
 using DotVida.Domain.Interfaces.Services;
 using FluentValidation;
-using System.Net;
 
 namespace DotVida.Domain.Services
 {
@@ -31,39 +30,27 @@ namespace DotVida.Domain.Services
             return await _repository.GetByIdAsync(Id);
         }
 
-        public async Task<HttpResponseMessage> CreateAsync(Patient entity)
+        public async Task CreateAsync(Patient entity)
         {
-            var validator = await _validator.ValidateAsync(entity);
-
-            if (! validator.IsValid)
+            await _validator.ValidateAsync(entity, x => 
             {
-                var response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                response.Content = new StringContent(validator.ToString());
-                //return await Task.FromResult(response);
-                return response;
-            }
+                x.ThrowOnFailures();
+                
+            });
+            
+            //if (!validator.IsValid)
+                //throw new ArgumentNullException("", validator.Errors.ToString());
             await _repository.CreateAsync(entity);
-            return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
-        public async Task<HttpResponseMessage> UpdateAsync(Patient entity)
+        public async Task UpdateAsync(Patient entity)
         {
-            var validator = await _validator.ValidateAsync(entity);
-
-            if (!validator.IsValid)
-            {
-                var response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                response.Content = new StringContent(validator.ToString());
-                return await Task.FromResult(response);
-            }
             await _repository.UpdateAsync(entity);
-            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        public async Task<HttpResponseMessage> RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             await _repository.RemoveAsync(id);
-            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }

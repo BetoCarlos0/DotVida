@@ -1,6 +1,7 @@
 ﻿using DotVida.Application.Dtos;
 using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotVida.Api.Controllers
@@ -41,11 +42,16 @@ namespace DotVida.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostPatient(PatientDto patientDto)
         {
-            //if (!ModelState.IsValid) return BadRequest(new ValidationProblemDetails(ModelState));
-
-            var result = await _service.CreateAsync(patientDto);
-            if (result.IsSuccessStatusCode)
-                return Ok();
+            try
+            {
+                await _service.CreateAsync(patientDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+            return Ok();
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

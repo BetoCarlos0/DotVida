@@ -7,8 +7,8 @@ namespace DotVida.Domain.Interfaces.Services
         Task<IEnumerable<Patient>> GetAllAsync();
         Task<IEnumerable<Patient>> GetAllByNameAsync(string name);
         Task<Patient> GetByIdAsync(Guid Id);
-        Task<HttpResponseMessage> CreateAsync(Patient entity);
-        Task<HttpResponseMessage> UpdateAsync(Patient entity);
-        Task<HttpResponseMessage> RemoveAsync(Guid id);
+        Task CreateAsync(Patient entity);
+        Task UpdateAsync(Patient entity);
+        Task RemoveAsync(Guid id);
     }
 }

@@ -6,7 +6,7 @@ namespace DotVida.Application.Dtos
     {
         public string? Name { get; set; }
         public string? CPF { get; set; }
-        public int Age { get; set; }
+        public string? Age { get; set; }
         public string? Gender { get; set; }
         public string? BloodType { get; set; }  // tipo sanguíneo
         public bool PersonStatus { get; set; }    // vivo, morto

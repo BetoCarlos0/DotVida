@@ -35,7 +35,8 @@ namespace DotVida.Infra.Data.EntityConfiguration
                 .IsRequired();
 
             builder.Property(x => x.Age)
-                .HasMaxLength(3)
+                .HasColumnType("varchar")
+                .HasMaxLength(12)
                 .IsRequired();
 
             builder.Property(x => x.RegistrationNumber)

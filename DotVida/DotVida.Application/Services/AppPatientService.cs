@@ -3,6 +3,7 @@ using DotVida.Application.Dtos;
 using DotVida.Application.Interfaces;
 using DotVida.Domain.Entities;
 using DotVida.Domain.Interfaces.Services;
+using FluentValidation;
 
 namespace DotVida.Application.Services
 {
@@ -10,6 +11,7 @@ namespace DotVida.Application.Services
     {
         private readonly IPatientService _serviceBase;
         private readonly IMapper _mapper;
+
         public AppPatientService(IPatientService serviceBase, IMapper mapper)
         {
             _serviceBase = serviceBase;
@@ -32,10 +34,10 @@ namespace DotVida.Application.Services
             return entityDto;
         }
 
-        public async Task<HttpResponseMessage> CreateAsync(PatientDto entityDto)
+        public async Task CreateAsync(PatientDto entityDto)
         {
             var entity = _mapper.Map<Patient>(entityDto);
-            return await _serviceBase.CreateAsync(entity);
+            await _serviceBase.CreateAsync(entity);
         }
 
         public async Task UpdateAsync(PatientDto entityDto)

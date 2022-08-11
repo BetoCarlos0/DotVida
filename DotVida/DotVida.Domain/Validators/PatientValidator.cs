@@ -8,8 +8,16 @@ namespace DotVida.Domain.Validators
         public PatientValidator()
         {
             RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("Nome obrigatório")
-                .NotNull().WithMessage("Nome obrigatório");           
+                .NotEmpty().WithMessage("Campo vazio");
+
+            RuleFor(x => x.CPF)
+                .NotEmpty().WithMessage("Campo vazio");
+
+            RuleFor(x => x.Gender)
+                .NotEmpty().WithMessage("Campo vazio");
+
+            RuleFor(x => x.BloodType)
+                .NotEmpty().WithMessage("Campo vazio");
         }
     }
 }
